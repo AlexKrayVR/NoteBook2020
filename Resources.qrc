@@ -1,0 +1,13 @@
+<RCC>
+    <qresource prefix="/new/prefix1">
+        <file>spring.png</file>
+        <file>noteClean.png</file>
+        <file>noteClean2.png</file>
+        <file>noteSave.png</file>
+        <file>noteSave2.png</file>
+        <file>noteSearch.png</file>
+        <file>noteSearch2.png</file>
+        <file>noteClose.png</file>
+        <file>noteClose2.png</file>
+    </qresource>
+</RCC>

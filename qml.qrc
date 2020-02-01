@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>spring.png</file>
+        <file>ModelNotes.qml</file>
+    </qresource>
+</RCC>
