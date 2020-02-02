@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include"modelnotebook.h"
 #include<QQmlContext>
-
+#include"notebookfile.h"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -10,7 +10,9 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QQmlApplicationEngine engine;
-    //qmlRegisterType<ModelNoteBook>("ModelNoteBook", 1, 0, "ModelNoteBook");
+
+    NoteBookFile *nbf;
+
 
     ModelNoteBook *NoteBook=new ModelNoteBook;
 

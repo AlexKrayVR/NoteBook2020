@@ -9,5 +9,9 @@
         <file>noteSearch2.png</file>
         <file>noteClose.png</file>
         <file>noteClose2.png</file>
+        <file>type.png</file>
+        <file>type2.png</file>
+        <file>noteDelete.png</file>
+        <file>noteDelete2.png</file>
     </qresource>
 </RCC>

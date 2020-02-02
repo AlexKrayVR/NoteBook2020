@@ -12,13 +12,27 @@ ModelNoteBook::ModelNoteBook()
     m_wholeText.push_back("ghjhiom");
 }
 
-void ModelNoteBook::addNote(QString &note)
+void ModelNoteBook::addNote(const QString &note)
 {
+    beginResetModel();
     m_wholeText.push_back(note);
+    endResetModel();
+
+}
+
+void ModelNoteBook::deleteNote(int index)
+{
+    if (index<0||index>=m_wholeText.size()){
+        return;
+    }
+    beginResetModel();
+    m_wholeText.erase(m_wholeText.begin()+index);
+    endResetModel();
 }
 
 QHash<int, QByteArray> ModelNoteBook::roleNames() const
 {
+
     QHash<int, QByteArray> roles = QAbstractListModel::roleNames();
     roles[Text] = "text";
     return roles;

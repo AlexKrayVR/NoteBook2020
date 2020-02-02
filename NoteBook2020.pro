@@ -15,7 +15,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        modelnotebook.cpp
+        modelnotebook.cpp \
+        notebookfile.cpp
 
 RESOURCES += qml.qrc \
     Resources.qrc
@@ -32,4 +33,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    modelnotebook.h
+    modelnotebook.h \
+    notebookfile.h

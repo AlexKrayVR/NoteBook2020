@@ -2,10 +2,18 @@ import QtQuick 2.12
 import QtQuick.Window 2.12
 
 Window {
+    id: mainWindow
     visible: true
     width: 340
     height: 480
     title: qsTr("NoteBook")
+    ModelNotes{
+        id:notes
+        onSignalExit: {
+            notes.close()
+            mainWindow.show()
+        }
+    }
 
     Item {
         anchors.fill: parent
@@ -29,8 +37,6 @@ Window {
                 source: "/new/prefix1/spring.png"
             }
         }
-
-
         Rectangle {
             id:dilimiter
             width:parent.width
@@ -60,12 +66,10 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             width:parent.width
             height: (parent.height-img.height-dilimiter.height)*0.2
+           //save button
             Item {
-                anchors.top: textEdit.bottom
-                anchors.left: textEdit.left
                 width: height
                 height: Math.min(parent.width,parent.height)
-                anchors.leftMargin: textEdit.width/8
                 MouseArea{
                     id:buttonSave
                     anchors.fill: parent
@@ -84,12 +88,10 @@ Window {
                     source: buttonSave.pressed?"/new/prefix1/noteSave2.png" :"/new/prefix1/noteSave.png"
                 }
             }
+            //clean button
             Item {
-                anchors.top: textEdit.bottom
-                anchors.left: textEdit.left
                 width: height
                 height: parent.height
-                anchors.leftMargin: textEdit.width/8
                 MouseArea{
                     id:buttonClean
                     anchors.fill: parent
@@ -108,18 +110,16 @@ Window {
                     source: buttonClean.pressed?"/new/prefix1/noteClean2.png" :"/new/prefix1/noteClean.png"
                 }
             }
-
+            //search button
             Item {
-                anchors.top: textEdit.bottom
-                anchors.left: textEdit.left
                 width: height
                 height: parent.height
-                anchors.leftMargin: textEdit.width/8
                 MouseArea{
                     id:buttonSearch
                     anchors.fill: parent
                     onClicked: {
-
+                        notes.show()
+                        mainWindow.hide()
                     }
                 }
                 Image {
@@ -133,13 +133,10 @@ Window {
                     source: buttonSearch.pressed?"/new/prefix1/noteSearch2.png" :"/new/prefix1/noteSearch.png"
                 }
             }
-
+            //close button
             Item {
-                anchors.top: textEdit.bottom
-                anchors.left: textEdit.left
                 width: height
                 height: parent.height
-                anchors.leftMargin: textEdit.width/8
                 MouseArea{
                     id:buttonClose
                     anchors.fill: parent
@@ -160,12 +157,5 @@ Window {
             }
         }
     }
-
-
-    //ModelNotes{
-
-    //}
-
-
 }
 

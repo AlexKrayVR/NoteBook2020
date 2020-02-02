@@ -5,6 +5,8 @@
 #include <QObject>
 #include<vector>
 #include<QAbstractListModel>
+#include<string>
+#include<QList>
 using namespace std;
 
 class ModelNoteBook : public QAbstractListModel
@@ -13,15 +15,20 @@ class ModelNoteBook : public QAbstractListModel
 public:
    explicit ModelNoteBook();
 
-    vector<QString> m_wholeText;
 
-    Q_INVOKABLE void addNote(QString &note);
     QHash<int,QByteArray> roleNames() const override;
     int rowCount(const QModelIndex& parent)const override;
     QVariant data(const QModelIndex& index, int role) const override;
     enum CardRoles{
         Text=Qt::UserRole+1
     };
+    Q_INVOKABLE void addNote(const QString &note);
+    Q_INVOKABLE void deleteNote(int index);
+
+private:
+
+    QList<QString> m_wholeText;
+
 
 };
 
