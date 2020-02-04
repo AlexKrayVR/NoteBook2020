@@ -7,7 +7,7 @@
 #include<QTextStream>
 #include<string>
 #include<QDir>
-
+#include <QGuiApplication>
 class NoteBookFile
 {
 public:

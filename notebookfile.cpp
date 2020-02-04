@@ -1,7 +1,9 @@
 #include "notebookfile.h"
 
-NoteBookFile::NoteBookFile(): m_fileName(".//NoteBook.txt"),m_mainText()
+NoteBookFile::NoteBookFile(): m_mainText()
 {
+
+    m_fileName="./NoteBook.txt";
 
     QFile myFile(m_fileName);
     QString data;
@@ -23,7 +25,6 @@ NoteBookFile::NoteBookFile(): m_fileName(".//NoteBook.txt"),m_mainText()
         temp="";
         }
     }
-
 }
 
 NoteBookFile::~NoteBookFile()
@@ -43,6 +44,5 @@ void NoteBookFile::refresh()
        }
        stream<<temp;
    }
-
    myFile.close();
 }

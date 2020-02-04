@@ -3,11 +3,10 @@ import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
 
 
-Window {
+Rectangle {
     id:notes
     width: 340
     height: 480
-    title: qsTr("NoteBook")
     property int indexModel: 0
     signal signalExit
 
@@ -101,6 +100,7 @@ Window {
 
 
     Row{
+        id:rowMenu
         anchors.top: listView.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width:parent.width
@@ -108,8 +108,8 @@ Window {
 
         //type button
         Item {
-            width: height
-            height: parent.height
+            width: rowMenu.width/4
+            height: Math.min(width,parent.height)
             MouseArea{
                 id:buttonSearch
                 anchors.fill: parent
@@ -128,13 +128,14 @@ Window {
         }
         //delete note button
         Item {
-            width: height
-            height: parent.height
+            width: rowMenu.width/4
+            height: Math.min(width,parent.height)
             MouseArea{
                 id:buttonDeleteNote
                 anchors.fill: parent
                 onClicked: {
                     NoteBook.deleteNote(indexModel)
+                    NoteBook.saveToFile()
                 }
             }
             Image {
@@ -151,12 +152,13 @@ Window {
 
         //exit app button
         Item {
-            width: height
-            height: parent.height
+            width: rowMenu.width/4
+            height: Math.min(width,parent.height)
             MouseArea{
                 id:buttonClose
                 anchors.fill: parent
                 onClicked: {
+                    NoteBook.saveToFile()
                     Qt.quit()
                 }
             }

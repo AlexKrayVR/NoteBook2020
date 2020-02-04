@@ -1,7 +1,8 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
+import QtQuick.Controls 2.12
 
-Window {
+ApplicationWindow  {
     id: mainWindow
     visible: true
     width: 340
@@ -9,9 +10,11 @@ Window {
     title: qsTr("NoteBook")
     ModelNotes{
         id:notes
+        anchors.fill: parent
+        visible: false
+        z:1
         onSignalExit: {
-            notes.close()
-            mainWindow.show()
+            notes.visible=false
         }
     }
 
@@ -32,6 +35,7 @@ Window {
             anchors.horizontalCenter: parent.horizontalCenter
             Image {
                 id: springImg
+                fillMode: Image.Stretch
                 anchors.fill: parent
                 anchors.margins: 5
                 source: "/new/prefix1/spring.png"
@@ -62,19 +66,21 @@ Window {
 
         }
         Row{
+            id:rowMenu
             anchors.top: textEdit.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             width:parent.width
             height: (parent.height-img.height-dilimiter.height)*0.2
            //save button
             Item {
-                width: height
-                height: Math.min(parent.width,parent.height)
+                width: rowMenu.width/4
+                height: Math.min(width,parent.height)
                 MouseArea{
                     id:buttonSave
                     anchors.fill: parent
                     onClicked: {
                         NoteBook.addNote(textEdit.text)
+                        NoteBook.saveToFile()
                     }
                 }
                 Image {
@@ -90,8 +96,8 @@ Window {
             }
             //clean button
             Item {
-                width: height
-                height: parent.height
+                width: rowMenu.width/4
+                height: Math.min(width,parent.height)
                 MouseArea{
                     id:buttonClean
                     anchors.fill: parent
@@ -112,14 +118,13 @@ Window {
             }
             //search button
             Item {
-                width: height
-                height: parent.height
+                width: rowMenu.width/4
+                height: Math.min(width,parent.height)
                 MouseArea{
                     id:buttonSearch
                     anchors.fill: parent
-                    onClicked: {
-                        notes.show()
-                        mainWindow.hide()
+                    onClicked: {                        
+                        notes.visible=true
                     }
                 }
                 Image {
@@ -135,8 +140,8 @@ Window {
             }
             //close button
             Item {
-                width: height
-                height: parent.height
+                width: rowMenu.width/4
+                height: Math.min(width,parent.height)
                 MouseArea{
                     id:buttonClose
                     anchors.fill: parent

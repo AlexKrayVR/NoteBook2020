@@ -3,6 +3,7 @@
 #include"modelnotebook.h"
 #include<QQmlContext>
 #include"notebookfile.h"
+#include"QDebug"
 int main(int argc, char *argv[])
 {
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
@@ -11,7 +12,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
-    NoteBookFile *nbf;
+ qDebug() << QCoreApplication::applicationDirPath();
 
 
     ModelNoteBook *NoteBook=new ModelNoteBook;

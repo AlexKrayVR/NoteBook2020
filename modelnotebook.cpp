@@ -2,14 +2,12 @@
 
 
 ModelNoteBook::ModelNoteBook()
-{
-    m_wholeText.push_back("first fg;fdjjgdfjgdg dgffgdfgdfgfgdg"
-                          "dfgdgdgdhl;h;lhdfgdgdggfgdgdfgdgdg"
-                          "\ndfgdfg345cg");
-    m_wholeText.push_back("grethr\n\tfhfhhfg\ngfjj");
-    m_wholeText.push_back("fdgjhbnv");
-    m_wholeText.push_back("12cxvny");
-    m_wholeText.push_back("ghjhiom");
+{  
+
+    m_nootBookFile=new NoteBookFile;
+    for(const auto &el: m_nootBookFile->m_mainText){
+        m_wholeText.push_back(el);
+    }
 }
 
 void ModelNoteBook::addNote(const QString &note)
@@ -17,7 +15,6 @@ void ModelNoteBook::addNote(const QString &note)
     beginResetModel();
     m_wholeText.push_back(note);
     endResetModel();
-
 }
 
 void ModelNoteBook::deleteNote(int index)
@@ -28,6 +25,15 @@ void ModelNoteBook::deleteNote(int index)
     beginResetModel();
     m_wholeText.erase(m_wholeText.begin()+index);
     endResetModel();
+}
+
+void ModelNoteBook::saveToFile()
+{
+    m_nootBookFile->m_mainText.clear();
+    for(const auto &el: m_wholeText){
+        m_nootBookFile->m_mainText.push_back(el);
+    }
+    m_nootBookFile->refresh();
 }
 
 QHash<int, QByteArray> ModelNoteBook::roleNames() const

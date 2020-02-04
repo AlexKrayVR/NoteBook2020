@@ -7,6 +7,7 @@
 #include<QAbstractListModel>
 #include<string>
 #include<QList>
+#include"notebookfile.h"
 using namespace std;
 
 class ModelNoteBook : public QAbstractListModel
@@ -25,8 +26,10 @@ public:
     Q_INVOKABLE void addNote(const QString &note);
     Q_INVOKABLE void deleteNote(int index);
 
-private:
+    Q_INVOKABLE void saveToFile();
 
+private:
+    NoteBookFile *m_nootBookFile;
     QList<QString> m_wholeText;
 
 
