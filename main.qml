@@ -5,7 +5,7 @@ import QtQuick.Controls 2.12
 ApplicationWindow  {
     id: mainWindow
     visible: true
-    width: 340
+    width: 340    
     height: 480
     title: qsTr("NoteBook")
     ModelNotes{
@@ -16,6 +16,14 @@ ApplicationWindow  {
         onSignalExit: {
             notes.visible=false
         }
+        onSignalDoubleClick: {
+            //textEdit.text=notes.allText
+            notes.visible=false
+
+        }
+        onMoveText: textEdit.text= v
+
+
     }
 
     Item {
@@ -63,8 +71,8 @@ ApplicationWindow  {
             font.bold: false
             anchors.topMargin: 20
             font.pixelSize: parent.width/12
-
         }
+
         Row{
             id:rowMenu
             anchors.top: textEdit.bottom

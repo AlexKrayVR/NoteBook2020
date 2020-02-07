@@ -7,9 +7,11 @@ Rectangle {
     id:notes
     width: 340
     height: 480
+    property string allText: ""
     property int indexModel: 0
     signal signalExit
-
+    signal signalDoubleClick
+    signal moveText(string v)
     Rectangle {
         width: parent.width
         anchors.bottom: parent.bottom
@@ -76,6 +78,12 @@ Rectangle {
                     onClicked: {
                         listView.currentIndex = model.index
                         indexModel= model.index
+                    }
+                    onDoubleClicked: {
+                        allText=model.text
+                        notes.signalDoubleClick()
+                        notes.signalExit()
+                        moveText(model.text)
                     }
                 }
                 Text {
